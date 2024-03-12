@@ -1,13 +1,43 @@
-#field td {
-    width: 50px;
-    height: 50px;
+.table-wrapper {
+    width: 1140px;
+    height: 500px;
+
+    margin: 0 auto;
+
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.field td{
+    width: 100px;
+    height: 100px;
     border: 1px solid black;
 
     text-align: center;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 60px;
 }
+
+.field__min td{
+    width: 50px;
+    height: 50px;
+
+    font-size: 30px;
+}    
 
 .select {
     background-color: blueviolet;
+}
+
+.select-size {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    width: 80px;
+    height: 30px;
+
+    font-size: 20px;
 }

@@ -1,5 +1,4 @@
 let count = 0;
-let win = false;
 
 function alerts (text) {
     setTimeout(function () {
@@ -7,38 +6,39 @@ function alerts (text) {
     }, 50)
 }
 
-let draw = (element) => {
-    if (win) return alert("Игра окончена!");
-
-    if (count % 2 == 0) {
-        element.textContent = "X";
-    } else {
-        element.textContent = "O";
-    }
-
-    let victory = isVictory(cells);
-
-    if (victory) {
-        select(victory);
-        alerts(`Выйграл ${element.textContent}`);
-        win = true;
-    }
-
-    if (!win && count == 8) alerts(`Ничья!`);
-
-    count++;
+function reload () {
+    setTimeout(function () {
+        location.reload();
+    }, 50)
 }
 
-let cells = document.querySelectorAll('#field td');
+let cells = document.querySelectorAll('.field td');
 start(cells);
 
 function start(cells) {
     cells.forEach(element => {
-        element.addEventListener('click', function _draw() {
-                draw(element);
-                element.removeEventListener('click', _draw);
+        element.addEventListener('click', function step() {
+            if (count % 2 == 0) {
+                element.textContent = "X";
+            } else {
+                element.textContent = "O";
             }
-        );
+        
+            let victory = isVictory(cells);
+        
+            if (victory) {
+                select(victory);
+                alerts(`Выйграл ${element.textContent}`);
+                reload();
+            } else if (count == 8){
+                alerts(`Ничья!`);
+                reload();
+            }
+        
+            count++;
+            
+            element.removeEventListener('click', step);
+        });
     });
 }
 
@@ -72,3 +72,15 @@ function select(elements) {
         cells[e].classList.add('select');
     });
 }
+
+let select_size = document.querySelector('.select-size');
+select_size.addEventListener('change', function () {
+    let value = this.value;
+    let table = document.querySelector('.field');
+
+    if (value == "min") {
+        table.classList.add('field__min');
+    } else {
+        table.classList.remove('field__min');
+    }
+});
