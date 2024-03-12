@@ -10,6 +10,47 @@
     align-items: center;
 }
 
+.field {
+    width: 315px;
+    position: relative;
+}
+
+.line {
+    position: relative;
+}
+
+.line::before {
+    display: block;
+    content: "";
+
+    width: 302%;
+    height: 3px;
+    background-color: black;
+
+    position: absolute;   
+    top: 50%;
+}
+
+.horizon::before {
+    transform: rotate(90deg);
+    top: 154%;
+    left: -100%;
+}
+
+.diagonal-main::before {
+    transform: rotate(44deg);
+    width: 428%;
+    top: 153%;
+    left: -58%;
+}
+
+.diagonal::before {
+    transform: rotate(136deg);
+    top: 154%;
+    width: 428%;
+    right: -59%;
+}
+
 .field td{
     width: 100px;
     height: 100px;
@@ -41,3 +82,19 @@
 
     font-size: 20px;
 }
+
+.step {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+
+    font-size: 20px;
+}
+
+.step span {
+    width: 100%;
+    display: block;
+
+    text-align: center;
+}
+
